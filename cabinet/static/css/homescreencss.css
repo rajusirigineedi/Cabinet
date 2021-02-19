@@ -1,0 +1,95 @@
+.page1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-displayer {
+    width: 80%;
+}
+
+.project-scroller {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.project-holder {
+    display: inline-block;
+    width: 300px;
+    /*    background-color: royalblue;*/
+    padding: 10px 10px;
+}
+
+
+.project > h3 {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 100%;
+}
+
+.project > p {
+    padding: 0px 10px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    font-weight: 400;
+    font-size: 80%;
+}
+
+.project {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+/*Media Queries*/
+
+/*laptops and desktops*/
+@media only screen and (min-width:1200px) {}
+
+/*potrait mode for tabs*/
+@media only screen and (max-width:1023px) {}
+
+/*tabs*/
+@media only screen and (max-width:767px) {}
+
+/*normal phones*/
+@media only screen and (max-width:480px) {
+
+    .page1 p {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .mainHead {
+        font-size: 180%;
+    }
+
+    .page1-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .project-holder {
+        display: inline-block;
+        width: 230px;
+    }
+
+    .project > img {
+        width: 80px;
+        margin: 10px;
+    }
+
+
+}

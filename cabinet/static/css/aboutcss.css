@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+}
+
+.dev-holder {
+    position: relative;
+    width: 220px;
+    height: 300px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dev-mask {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    bottom: -80%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    transition: 1s;
+}
+
+.dev-mask:hover {
+    bottom: 0%;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.dev-buttons {
+    width: 80%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.dev-buttons-text {
+    font-size: 80%;
+    margin: 0px;
+}
+
+.dev-info {
+    font-size: 70%;
+    margin: 10px 0px;
+    font-weight: bold;
+}
+
+.dev-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.aboutus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.headerabout {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.hdrinfo {
+    display: inline-block;
+    width: 60%;
+}
+
+.hdr-h1 {
+    font-weight: 900;
+    font-size: 300%;
+}
+
+.hdr-p {
+    font-size: 100%;
+    font-weight: bold;
+}
+
+.hdr-img {
+    display: inline;
+    width: 40%;
+}
+
+.all-hold{
+    margin-top: 40px;
+}
+
+
+
+
+
+
+/*Media Queries*/
+
+/*laptops and desktops*/
+@media only screen and (min-width:1200px) {
+
+}
+
+/*potrait mode for tabs*/
+@media only screen and (max-width:1023px) {
+
+
+}
+
+/*tabs*/
+@media only screen and (max-width:767px) {
+
+}
+
+/*normal phones*/
+@media only screen and (max-width:480px) {
+
+
+  * {
+          font-size: 15px;
+      }
+.hdr-h1 {
+    font-size: 200%;
+}
+    .hdr-p {
+    font-size: 70%;
+}
+    .hdrinfo {
+    width: 60%;
+}
+
+
+
+}

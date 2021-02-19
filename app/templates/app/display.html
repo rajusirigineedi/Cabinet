@@ -1,0 +1,799 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extracss %}
+  <title>{{app.appname}}</title>
+{% endblock %}
+
+{% block header %}
+      {%include 'components/header.html' %}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="blur-background">
+
+  <div class="image-displayer">
+        <div class="close-image"><p style="margin: 0px;font-size: 80%">X</p>
+        </div>
+
+        <div class="image-holder-mobile">
+            <img id="mob-img" class="image-disp" src="{% static 'images/edit1.png' %}">
+        </div>
+         <div class="image-holder-laptop">
+            <img id="lap-img" class="image-disp" src="{% static 'images/edit1.png' %}">
+        </div>
+  </div>
+
+
+
+  <!-- Select Screen  -->
+
+  <div class="select-screen">
+            <div id="close-button-select" class="close-button">
+                <p style="color: white;margin: 0px;font-weight: bold;font-size: 80%;">X</p>
+            </div>
+            <div class="elim-pick">
+                <img id="add-button" class="ed-im" src="{% static 'images/edit1.png' %}">
+                <p class="ed-tx">Add</p>
+            </div>
+
+            <div class="elim-pick">
+                <img id="change-button"  class="ed-im" src="{% static 'images/edit2.png' %}">
+                <p class="ed-tx">Change</p>
+            </div>
+            <div class="elim-pick">
+                <img id="delete-button" class="ed-im" src="{% static 'images/edit3.png' %}">
+                <p class="ed-tx">Delete</p>
+            </div>
+
+
+        </div>
+
+        <!-- Add Screen -->
+
+    <div id="add-screen" class="edit-screen">
+      <div id="add-loader" class="mid-loader">
+                <img width=70 src="{% static 'images/loader.gif' %}">
+                <p class="mid-loader-text">Uploading</p>
+            </div>
+        <div id="close-button-add" class="close-button">
+            <p style="color: white;margin: 0px;font-weight: bold;font-size: 80%;">X</p>
+        </div>
+        <div>
+            <h2>Enter your Screen</h2>
+            <p class="par">Enter header, info and details</p>
+        </div>
+
+
+            <div style="display: flex; flex-direction: column;align-items: center;">
+
+                <input id="sa" type="text" name="header" placeholder="Screenshot header">
+                <textarea id="sb" name="info" placeholder="Enter the info about the screenshot" rows="4"></textarea>
+                <input id="sc" type="file" name="myfile"  id="myfile">
+                <div>
+
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="insert-before" value="option1">
+                    <label class="par" style="margin-right: 10px;">Insert Before</label>
+
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="insert-after" value="option2" checked>
+                    <label class="par">Insert After</label>
+
+                </div>
+
+                <button id="save-snap-button" class="save-button">SAVE</button>
+            </div>
+
+    </div>
+
+    <!-- Delete screen -->
+
+    <div class="delete-screen">
+      <div id="delete-loader" class="mid-loader">
+                <img width=70 src="{% static 'images/loader.gif' %}">
+                <p class="mid-loader-text">Deleting</p>
+            </div>
+        <div id="close-button-delete" class="close-button">
+                <p style="color: white;margin: 0px;font-weight: bold;font-size: 80%;">X</p>
+            </div>
+        <h2 class="delete-txt">Sure to delete Current screen?</h2>
+        <div>
+         <input id="delete-screen-yes" type="submit" class="save-button yes-button" value="Yeah">
+        <input id="delete-screen-no" type="submit" class="save-button no-button" value="Nooo">
+        </div>
+
+
+    </div>
+
+
+    <!-- Edit screen  -->
+
+    <div id="edit-screen" class="edit-screen">
+      <div id="edit-loader" class="mid-loader">
+                <img width=70 src="{% static 'images/loader.gif' %}">
+                <p class="mid-loader-text">Modifying</p>
+            </div>
+        <div id="close-button-edit" class="close-button">
+            <p style="color: white;margin: 0px;font-weight: bold;font-size: 80%;">X</p>
+        </div>
+        <div>
+            <h2>Edit Current Screen</h2>
+            <p class="par">Edit header, info and details</p>
+        </div>
+
+
+            <div style="display: flex; flex-direction: column;align-items: center;">
+                <input id='ea' type="text" name="projname" placeholder="Screenshot header">
+                <textarea id='eb' name="text" placeholder="Enter the info about the screenshot" rows="4"></textarea>
+                <input id='ec' type="file" name="myfile" id="myfile">
+
+                <input id='update' type="submit" class="save-button" value="UPDATE">
+            </div>
+
+
+    </div>
+
+    <!-- Delete Project -->
+    <div id="delete-project" class="delete-screen">
+            <div id="close-button-dltp" class="close-button">
+                    <p style="color: white;margin: 0px;font-weight: bold;font-size: 80%;">X</p>
+                </div>
+            <h2 class="delete-txt">Sure to delete Whole Project?</h2>
+            <div>
+             <input onclick="javascript:{document.getElementById('dltpj').submit()}" id="yes-dltp" type="submit" class="save-button yes-button" value="Yeah">
+             <form id="dltpj" style="display:inline;" method="POST" action="{% url 'app:delete_project' app.id %}">
+                  {% csrf_token %}
+                  <input type="hidden" />
+             </form>
+            <input id="no-dltp" type="submit" class="save-button no-button" value="Nooo">
+            </div>
+   </div>
+
+
+    <!-- add Stack screen  -->
+   <div id="add-stack-screen" class="edit-screen">
+     <div id="add-stack-loader" class="mid-loader">
+               <img width=70 src="{% static 'images/loader.gif' %}">
+               <p class="mid-loader-text">Adding</p>
+           </div>
+       <div id="close-button-add-stack" class="close-button">
+           <p style="color: white;margin: 0px;font-weight: bold;font-size: 80%;">X</p>
+       </div>
+       <div>
+           <h2>Add a technology used</h2>
+           <p class="par">Enter Tech. name, link and icon</p>
+       </div>
+           <div style="display: flex; flex-direction: column;align-items: center;">
+               <input id='ma' type="text" name="projname" placeholder="Tech. Name">
+               <textarea id='mb' name="text" placeholder="Enter the link for technology" rows="4"></textarea>
+               <input id='mc' type="file" name="myfile" id="myfile">
+               <input id='add-stack-button' type="submit" class="save-button" value="ADD">
+           </div>
+   </div>
+
+</div>
+
+{% if user == app.user  %}
+<div class="action-here">
+</div>
+{% endif %}
+
+<div id="pageone" class="page page1">
+    <div id="pageonetext" class="page1-text">
+        <div class="mainHead">
+            <h2>{{app.appname}}</h2>
+            <a href="{{app.gitlink}}" target='blank'><img class="mainIcon" src="{% static 'images/github.png' %}"></a>
+              <a href="{{app.weblink}}" target='blank'><img class="mainIcon" src="{% static 'images/webstore.png' %}"></a>
+        </div>
+        <span id="curr_id_noter" value="{{snapAndDetail.id}}"></span>
+        {% if not zero_length %}
+        <h4 id="header">{{snapAndDetail.header}}</h4>
+        <p id="info">{{snapAndDetail.info}}</p>
+        <button class="prevbutton" type="button" id="pb"> Prev</button>
+        <button class="nextbutton" type="button" id="nb" >Next</button>
+        {% endif %}
+    </div>
+
+
+    <div id="mobilephone" class="mobile-phone">
+        <img id="screenshot-holder" ismobile={{ismobile}} class="mobile-pic" src="{% if not zero_length %}{{snapAndDetail.screenshot.url}}{% else %}{% static 'images/im2.jpeg'%}{%endif %}">
+    </div>
+
+</div>
+<div class="page page2">
+
+    <h1> See How It Works</h1>
+    <div class="mobile-phone-video">
+      <iframe class="mobile-vid"  src="https://www.youtube.com/embed/{{app.get_yt_code}}?loop=1">
+          </iframe>
+    </div>
+    <div class="tot-water">
+        <img class="watermark-img" src="{{app.appIcon.url}}">
+        <h2 class="watermark">{{app.appname}}</h2>
+    </div>
+
+</div>
+<div class="page page4">
+    <div class="stack-used">
+      <div class="stack-heading">
+          <h2>Stack Used !! </h2>
+          {% if user == app.user  %}
+          <p class="stack-heading-remove">Remove</p>
+          {% endif %}
+          </div>
+        <div class="stack-scroller">
+          <div class="tech" style="margin-left: 20px; margin-right: 50px;">
+                    <img id="add-stack" class="tcm add-stack" src="{% static 'images/write.png' %}">
+          </div>
+          <div id="ajax-stack-list" style="display:inline">
+            {% for techstack in techstacks %}
+            <div class="tech stack-items">
+              <div onclick="javascript:{deleteParticularStack({{techstack.id}})}" class="stack-delete">x</div>
+              <img class="tcm" src="{{techstack.icon.url}}">
+              <p><a style="text-decoration:none;color:white;font-size:80%;" href="{{techstack.link}}" target="blank">{{techstack.name}}</a></p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+
+    </div>
+    <div class="profile-section row mx-0">
+        <div class="like-section col-lg-6 col-sm-6">
+            <h2>Like this project</h2>
+              <p id="like-text">Like ( {{app.likes}} )</p>
+              <img id="like-button" src="{% static 'images/like.png' %}">
+            <h2>Suggest any Improvements !</h2>
+            <!-- <input class="profile-suggest" type="text" > -->
+            <textarea class="profile-suggest" name="suggest" rows="5"></textarea>
+        </div>
+        <div class="contact-section col-lg-6 col-sm-6">
+            <h2>References</h2>
+            <a href="{{app.gitlink}}"  target='blank'><img class="ref-img" src="{% static 'images/github.png' %}"></a>
+            <a href="{{app.appstorelink}}"  target='blank'><img class="ref-img" src="{% static 'images/appstore.png' %}"></a>
+            <a href="{{app.playstorelink}}"  target='blank'><img class="ref-img" src="{% static 'images/googleplay.png' %}"></a>
+            <a href="{{app.weblink}}"  target='blank'><img class="ref-img" src="{% static 'images/webstore.png' %}"></a>
+            <h2>Developer Details</h2>
+            <p>{{appUser.username}}</p>
+            <br>
+            <p>{{appUser.email}}</p>
+            <br>
+            <p>{{appUser.resume_link}}</p>
+            {% if user == app.user  %}
+            <div id="deleteProject" class="delete-button">
+                  <h3 style="text-align: center;font-weight: bold;" class="header-buttons-text">Delete Project</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="tot-water">
+        <img class="watermark-img" src="{{app.appIcon.url}}">
+        <h2 class="watermark">{{app.appname}}</h2>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+
+
+function startLoading(){
+    document.getElementById("progress-id").style.display = "flex";
+}
+function stopLoading(){
+  setTimeout(function(){ document.getElementById("progress-id").style.display = "none";},500);
+}
+
+function showLaptop(){
+
+  document.getElementById("pageone").classList.remove("page1");
+  document.getElementById("pageonetext").classList.remove("page1-text");
+  document.getElementById("mobilephone").classList.remove("mobile-phone");
+  document.getElementById("pageone").classList.add("page1-laptop");
+  document.getElementById("pageonetext").classList.add("page1-text-laptop");
+  document.getElementById("mobilephone").classList.add("mobile-phone-laptop");
+}
+function showMobile(){
+  document.getElementById("pageone").classList.remove("page1-laptop");
+  document.getElementById("pageonetext").classList.remove("page1-text-laptop");
+  document.getElementById("mobilephone").classList.remove("mobile-phone-laptop");
+  document.getElementById("pageone").classList.add("page1");
+  document.getElementById("pageonetext").classList.add("page1-text");
+  document.getElementById("mobilephone").classList.add("mobile-phone");
+}
+
+function loadNextVersion(isNext) {
+  startLoading();
+  curr_snap_id = document.getElementById("curr_id_noter").getAttribute("value")
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var obj = JSON.parse(this.responseText);
+       document.getElementById("header").innerHTML = obj['header'];
+       document.getElementById("info").innerHTML = obj['info'];
+       document.getElementById("curr_id_noter").setAttribute("value", obj['curr_id']);
+       document.getElementById("screenshot-holder").setAttribute("src", obj['image']);
+       document.getElementById("screenshot-holder").setAttribute("ismobile", obj['ismobile']);
+       if(obj['ismobile']){
+         showMobile();
+       }else{
+         showLaptop();
+       }
+       stopLoading();
+    }
+  };
+  xhttp.open("GET", `{% url 'app:next_snap' app.id  %}?snap_id=${curr_snap_id}&is_next=${isNext}`, true);
+  xhttp.send();
+}
+{% if not zero_length %}
+document.getElementById('nb').addEventListener("click", function(){loadNextVersion(true);});
+document.getElementById('pb').addEventListener("click", function(){loadNextVersion(false);});
+{% endif %}
+{% if not ismobile %}
+  showLaptop();
+{% endif %}
+
+
+
+function makeLike(){
+  startLoading();
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var obj = JSON.parse(this.responseText)
+       document.getElementById("like-text").innerHTML = `Like ( ${obj['current_likes']} )`;
+       stopLoading();
+    }
+  };
+  xhttp.open("GET", "{% url 'app:make_like' app.id  %}", true);
+  xhttp.send();
+}
+
+
+
+document.getElementById('like-button').addEventListener("click", makeLike);
+
+
+
+
+// Options and stuff
+
+var blur_background = document.getElementsByClassName('blur-background')[0];
+
+var select_screen = document.getElementsByClassName('select-screen')[0];
+var add_screen = document.getElementById('add-screen');
+var delete_screen = document.getElementsByClassName('delete-screen')[0];
+var edit_screen = document.getElementById('edit-screen');
+
+var close_button_edit = document.getElementById('close-button-edit');
+var close_button_delete = document.getElementById('close-button-delete');
+var close_button_add = document.getElementById('close-button-add');
+var close_button_select = document.getElementById('close-button-select');
+
+var edit_loader = document.getElementById('edit-loader');
+var add_loader = document.getElementById('add-loader');
+var delete_loader = document.getElementById('delete-loader');
+var add_stack_loader = document.getElementById('add-stack-loader');
+
+
+document.getElementById('add-button').addEventListener("click", showAddScreen);
+document.getElementById('change-button').addEventListener("click", showEditScreen);
+document.getElementById('delete-button').addEventListener("click", showDeleteScreen);
+document.getElementById('close-button-edit').addEventListener("click", closeEditScreen);
+document.getElementById('close-button-delete').addEventListener("click", closeDeleteScreen);
+document.getElementById('close-button-add').addEventListener("click", closeAddScreen);
+document.getElementById('close-button-select').addEventListener("click", closeSelectScreen);
+
+{% if user == app.user  %}
+  document.getElementsByClassName('action-here')[0].addEventListener("click", showSelectScreen);
+{% endif %}
+
+function show_mid_loaders(){
+  edit_loader.style.display = 'flex';
+  add_loader.style.display = 'flex';
+  delete_loader.style.display = 'flex';
+  add_stack_loader.style.display = 'flex';
+}
+function hide_mid_loaders(){
+  edit_loader.style.display = 'none';
+  add_loader.style.display = 'none';
+  delete_loader.style.display = 'none';
+  add_stack_loader.style.display = 'none';
+}
+
+function hide_select_screen(){
+  select_screen.style.display = 'none';
+}
+
+function hide_blur_background(){
+  blur_background.style.display = 'none';
+}
+
+function show_blur_background(){
+  blur_background.style.display = 'flex';
+}
+
+function showSelectScreen(){
+  show_blur_background();
+  select_screen.style.display = 'flex';
+}
+
+function showAddScreen() {
+   hide_select_screen();
+   add_screen.style.display = 'flex';
+}
+
+function showEditScreen() {
+  hide_select_screen();
+  edit_screen.style.display = 'flex';
+}
+
+function showDeleteScreen() {
+  hide_select_screen();
+  delete_screen.style.display = 'flex';
+}
+
+function closeEditScreen() {
+  edit_screen.style.display = 'none';
+  showSelectScreen();
+}
+
+function closeAddScreen() {
+  add_screen.style.display = 'none';
+  showSelectScreen();
+}
+
+function closeDeleteScreen() {
+  delete_screen.style.display = 'none';
+showSelectScreen();
+}
+
+function closeSelectScreen() {
+  select_screen.style.display = 'none';
+  hide_blur_background();
+}
+
+
+// Ajax functions ... UFFFFF
+
+
+
+
+async function addSnap() {
+  show_mid_loaders();
+
+  let formData = new FormData();
+  formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  formData.append("header", document.getElementById('sa').value);
+  formData.append("info", document.getElementById('sb').value);
+  formData.append("myfile", document.getElementById('sc').files[0]);
+  formData.append("curr_snap_id", document.getElementById('curr_id_noter').getAttribute('value'));
+
+  var isNext = true;
+  if(document.getElementById('insert-before').checked) {
+    isNext = false;
+  }
+  formData.append("direction", isNext)
+  var response = await fetch('{% url 'app:add_snap'  app.id %}', {
+    method: "POST",
+    body: formData
+  });
+
+  if(response.ok){
+    var obj = await response.json();
+    console.log(obj);
+    if(obj['zero_length']){
+      location.reload();
+    }
+    setTimeout(function(){
+      hide_mid_loaders();
+      clearInputContent();
+      closeAddScreen();
+      closeSelectScreen();
+      if(isNext){
+        loadNextVersion(true);
+      }else{
+        loadNextVersion(false);
+      }
+
+
+    },500);
+
+  }else{
+    console.log('HTTPERROR '+response.status);
+    hide_mid_loaders();
+  }
+
+}
+
+
+
+document.getElementById('save-snap-button').addEventListener("click", addSnap);
+
+
+
+async function deleteSnap() {
+  show_mid_loaders();
+  let formData = new FormData();
+  formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  formData.append('snap_id', document.getElementById('curr_id_noter').getAttribute('value'));
+  var response = await fetch('{% url 'app:delete_snap'  app.id %}', {
+    method: "POST",
+    body: formData,
+  });
+
+  if(response.ok){
+    var obj = await response.json();
+    console.log(obj);
+    setTimeout(function(){
+      if(obj['zero_length']){
+          location.reload();
+      }
+      hide_mid_loaders();
+      closeDeleteScreen();
+      closeSelectScreen();
+      document.getElementById("curr_id_noter").setAttribute("value", obj['new_id']);
+      loadNextVersion(true);
+
+    },500);
+
+  }else{
+    console.log('HTTPERROR '+response.status);
+    hide_mid_loaders();
+  }
+
+}
+
+
+
+document.getElementById('delete-screen-yes').addEventListener("click", deleteSnap);
+
+document.getElementById('delete-screen-no').addEventListener("click", closeDeleteScreen);
+
+
+function clearInputContent(){
+  document.getElementById('ea').value = '';
+  document.getElementById('eb').value = '';
+  document.getElementById('ec').value = '';
+  document.getElementById('sa').value = '';
+  document.getElementById('sb').value = '';
+  document.getElementById('sc').value = '';
+  document.getElementById('ma').value = '';
+  document.getElementById('mb').value = '';
+  document.getElementById('mc').value = '';
+}
+
+
+
+async function editSnap() {
+  show_mid_loaders();
+  let formData = new FormData();
+  formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  formData.append("header", document.getElementById('ea').value);
+  formData.append("info", document.getElementById('eb').value);
+  formData.append("myfile", document.getElementById('ec').files[0]);
+  formData.append("snap_id", document.getElementById('curr_id_noter').getAttribute('value'));
+
+
+  var response = await fetch('{% url 'app:edit_snap'  app.id %}', {
+    method: "POST",
+    body: formData
+  });
+
+  if(response.ok){
+    var obj = await response.json();
+    console.log(obj);
+    setTimeout(function(){
+      hide_mid_loaders();
+      clearInputContent();
+      closeEditScreen();
+      closeSelectScreen();
+      document.getElementById("curr_id_noter").setAttribute("value", obj['new_id']);
+      loadNextVersion(true);
+    },500);
+
+  }else{
+    console.log('HTTPERROR '+response.status);
+    hide_mid_loaders();
+  }
+
+}
+
+document.getElementById('update').addEventListener("click", editSnap);
+
+
+function showDeleteDialogue(){
+  blur_background.style.display = 'flex';
+  document.getElementById('delete-project').style.display = 'flex';
+}
+function closeDeleteDialogue(){
+blur_background.style.display = 'none';
+  document.getElementById('delete-project').style.display = 'none';
+}
+
+function showShakingIcons() {
+  if(document.getElementsByClassName('stack-heading-remove')[0].innerHTML == 'Done'){
+    var all_stack_icons = document.getElementsByClassName('stack-items');
+    for(var i = 0; i < all_stack_icons.length; i++){
+      all_stack_icons[i].childNodes[1].style.display = 'none';
+      all_stack_icons[i].childNodes[3].classList.remove('tcm-shake');
+    }
+    document.getElementsByClassName('stack-heading-remove')[0].innerHTML = 'Remove'
+  }else{
+    var all_stack_icons = document.getElementsByClassName('stack-items');
+    for(var i = 0; i < all_stack_icons.length; i++){
+      all_stack_icons[i].childNodes[1].style.display = 'inline';
+      all_stack_icons[i].childNodes[3].classList.add('tcm-shake');
+    }
+    document.getElementsByClassName('stack-heading-remove')[0].innerHTML = 'Done'
+  }
+}
+
+
+async function addStack() {
+  startLoading();
+  let formData = new FormData();
+  formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  formData.append('name', stack_id);
+  formData.append('icon', stack_id);
+  formData.append('link', stack_id);
+
+
+  var response = await fetch('{% url 'app:add_stack' app.id %}', {
+    method: "POST",
+    body: formData
+  });
+
+  if(response.ok){
+    var obj = await response.json();
+    setTimeout(function(){
+      showStackList(obj['techstacks']);
+      stopLoading();
+    },500);
+
+  }else{
+    console.log('HTTPERROR '+response.status);
+    stopLoading();
+  }
+}
+
+async function deleteParticularStack(stack_id) {
+  startLoading();
+  let formData = new FormData();
+  formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  formData.append('stack_id', stack_id);
+
+  var response = await fetch('{% url 'app:delete_stack' %}', {
+    method: "POST",
+    body: formData
+  });
+
+  if(response.ok){
+    var obj = await response.json();
+    setTimeout(function(){
+      showStackList(obj['techstacks']);
+      stopLoading();
+    },500);
+
+  }else{
+    console.log('HTTPERROR '+response.status);
+    stopLoading();
+  }
+}
+
+function showStackList(obj){
+  var finalHTML = '';
+  obj.forEach((item, i) => {
+    console.log(item['name']);
+    finalHTML += `<div class="tech stack-items">
+      <div onclick="javascript:{deleteParticularStack(${item['id']})}" class="stack-delete">x</div>
+      <img class="tcm" src="${item['url']}">
+      <p><a style="text-decoration:none;color:white;font-size:80%;" href="${item['link']}" target="blank">${item['name']}</a></p>
+    </div>`;
+  });
+  document.getElementById('ajax-stack-list').innerHTML = finalHTML;
+  document.getElementsByClassName('stack-heading-remove')[0].innerHTML = 'Remove'
+}
+
+
+function showAddStackDialogue() {
+  show_blur_background();
+  document.getElementById('add-stack-screen').style.display = 'flex';
+
+}
+
+function closeAddStackDialogue() {
+  document.getElementById('add-stack-screen').style.display = 'none';
+  hide_blur_background();
+}
+
+async function saveStack() {
+  show_mid_loaders();
+  let formData = new FormData();
+  formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  formData.append("name", document.getElementById('ma').value);
+  formData.append("link", document.getElementById('mb').value);
+  formData.append("myfile", document.getElementById('mc').files[0]);
+
+  var response = await fetch('{% url 'app:add_stack'  app.id %}', {
+    method: "POST",
+    body: formData
+  });
+
+  if(response.ok){
+    var obj = await response.json();
+    setTimeout(function(){
+      hide_mid_loaders();
+      clearInputContent();
+      showStackList(obj['techstacks']);
+      closeAddStackDialogue();
+    },500);
+
+  }else{
+    console.log('HTTPERROR '+response.status);
+    hide_mid_loaders();
+  }
+}
+
+
+
+
+{% if user == app.user  %}
+document.getElementById('add-stack').addEventListener("click", showAddStackDialogue);
+document.getElementById('deleteProject').addEventListener("click", showDeleteDialogue);
+document.getElementsByClassName('stack-heading-remove')[0].addEventListener("click", showShakingIcons);
+{% endif %}
+document.getElementById('close-button-dltp').addEventListener("click", closeDeleteDialogue);
+document.getElementById('close-button-add-stack').addEventListener("click", closeAddStackDialogue);
+document.getElementById('no-dltp').addEventListener("click", closeDeleteDialogue);
+document.getElementById('add-stack-button').addEventListener("click", saveStack);
+
+
+
+
+var imageDisplayer = document.getElementsByClassName('image-displayer')[0];
+var navbar = document.getElementsByClassName('navbar')[0];
+
+function showImageDisplayer(){
+  show_blur_background();
+  imageDisplayer.style.display  = 'flex';
+  navbar.style.display = 'none';
+
+}
+function closeImageDisplayer() {
+  hide_blur_background();
+  imageDisplayer.style.display = 'none';
+  navbar.style.display = 'block';
+}
+
+
+
+
+function displayImage(){
+  showImageDisplayer();
+  document.getElementById("mob-img").setAttribute("src", document.getElementById("screenshot-holder").getAttribute("src"));
+  document.getElementById("lap-img").setAttribute("src", document.getElementById("screenshot-holder").getAttribute("src"));
+  var res = document.getElementById("screenshot-holder").getAttribute("ismobile");
+  if(res == "True" || res == 'true'){
+    console.log("mbo");
+    document.getElementsByClassName('image-holder-laptop')[0].style.display = 'none';
+    document.getElementsByClassName('image-holder-mobile')[0].style.display = 'flex';
+  }else{
+    console.log("lap");
+    document.getElementsByClassName('image-holder-mobile')[0].style.display = 'none';
+    document.getElementsByClassName('image-holder-laptop')[0].style.display = 'flex';
+  }
+
+}
+
+document.getElementById('screenshot-holder').addEventListener("click", displayImage);
+document.getElementsByClassName('close-image')[0].addEventListener("click", closeImageDisplayer);
+
+
+</script>
+
+{% endblock %}

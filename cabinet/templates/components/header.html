@@ -1,0 +1,55 @@
+{% load static %}
+<nav style="background-color: rgba(0, 0, 0, 0.1);" class="navbar navbar-expand-lg fixed-top navbar-light ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'account:home' %}">
+              <div class="navbar-title">
+                  <img src="{% static 'images/cabicon.png' %}"  style="margin-right: 10px" height="36" class="d-inline-block align-top" alt="">
+                  Cabinet.
+                </div>
+          </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+              {% if user.is_authenticated %}
+              <form id="gohome" action="{% url 'account:home' %}">
+                   <input type="hidden" />
+              </form>
+              <li class="nav-item">
+                  <div class="header-buttons" onclick="javascript:{document.getElementById('gohome').submit()}">
+                      <h3 class="header-buttons-text">MY PROJECTS</h3>
+                  </div>
+              </li>
+              <li class="nav-item">
+                  <div class="header-buttons header-buttons-other" onclick="javascript:{document.getElementById('logout').submit()}">
+                      <h3 class="header-buttons-text">LOGOUT</h3>
+                  </div>
+              </li>
+  <form id="logout" method="POST" action="{% url 'account:logout' %}">
+       {% csrf_token %}
+       <input type="hidden" />
+  </form>
+  {% else %}
+  <form id="login" action="{% url 'account:login' %}">
+       <input type="hidden" />
+  </form>
+  <form id="signup" action="{% url 'account:signup' %}">
+       <input type="hidden" />
+  </form>
+  <li class="nav-item">
+      <div class="header-buttons" onclick="javascript:{document.getElementById('login').submit()}">
+          <h3 class="header-buttons-text">LOGIN</h3>
+      </div>
+  </li>
+  <li class="nav-item">
+      <div class="header-buttons header-buttons-other" onclick="javascript:{document.getElementById('signup').submit()}">
+          <h3 class="header-buttons-text">SIGNUP</h3>
+      </div>
+  </li>
+  {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>

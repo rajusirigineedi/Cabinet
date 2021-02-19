@@ -1,0 +1,103 @@
+.prevbutton {
+    display: block;
+    background-color:#01b2e8;
+    color: white;
+    font-size: 80%;
+    width: 44%;
+    font-weight: bold;
+    padding: 15px 18px;
+    border-radius: 10px;
+    border: none;
+}
+
+input[type="text"], input[type="password"] {
+    background-color: whitesmoke;
+  border: 4px solid white;
+    border-radius: 10px;
+  color: #01b2e8;
+      font-weight:bold;
+  padding: 15px 80px;
+  text-decoration: none;
+  display: block;
+  font-size: 80%;;
+    margin-bottom: 10px;
+    width:44%;
+}
+
+
+.error-mask >p{
+    margin: 0px;
+    font-size: 80%;
+}
+.error-mask{
+    background-color: rgb(255, 0, 0, 0.4);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width:44%;
+}
+
+
+
+/*Media Queries*/
+
+/*laptops and desktops*/
+@media only screen and (min-width:1200px) {
+
+}
+
+/*potrait mode for tabs*/
+@media only screen and (max-width:1023px) {
+    .prevbutton{
+        width:70%;
+    }
+    input[type="text"], input[type="password"]{
+        width:70%;
+    }
+    .error-mask{
+        width: 70%;
+    }
+}
+
+/*tabs*/
+@media only screen and (max-width:767px) {}
+
+/*normal phones*/
+@media only screen and (max-width:480px) {
+
+    .page1 p{
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .mainHead{
+        font-size: 180%;
+    }
+    .page1-text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .prevbutton{
+        width:100%;
+        padding:8px 18px;
+    }
+    input[type="text"], input[type="password"]{
+        width:100%;
+        padding:8px 18px;
+    }
+    .error-mask{
+        width: 100%;
+    }
+    form{
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

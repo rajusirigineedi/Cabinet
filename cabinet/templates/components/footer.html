@@ -1,0 +1,32 @@
+{% load static %}
+<div class="custom-footer ">
+    <div class="row mx-0">
+        <div class="branding col-lg-4 col-md-4 col-sm-12">
+          <div style="display: flex;flex-direction: column;">
+                  <img style="margin-right: 10px;width:50%;
+                          height: 50%" src="{% static 'images/cablogo.png' %}">
+              </div>
+            <div>
+                <p>Showcase your Masterpiece</p><br>
+            </div>
+        </div>
+        <div class="footer-items col-lg-4 col-md-4 col-sm-12">
+            <ul class="footer-items-list">
+                <li>Contact</li>
+                <li><a>+91-9010778702</a></li>
+                <li><a>syntaxerrorinline1@gmail.com</a></li>
+                <li><a href="#">Facebook page</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-items col-lg-4 col-md-4 col-sm-12">
+            <ul class="footer-items-list">
+                <li>Company</li>
+                <li><a href="{% url 'account:about' %}">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Copyright Policy</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>

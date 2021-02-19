@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extracss %}
+  <link rel="stylesheet" href="{% static 'css/homescreencss.css' %}">
+  <title>Home</title>
+{% endblock %}
+
+{% block header %}
+  {%include 'components/header.html' %}
+{% endblock %}
+
+
+{% block body %}
+<div class="page page1">
+  <div style="width:80%">
+        <div class="page1-text">
+            <div class="mainHead">
+                <h2>CABINET.</h2>
+                <img class="mainIcon" src="{% static 'images/appstore.png' %}">
+                <img class="mainIcon" src="{% static 'images/github.png' %}">
+            </div>
+            <h4>Welcome {{appUser.username}}</h4>
+            <p>View or Create ..</p>
+        </div>
+      </div>
+        <div class="project-displayer">
+            <div class="project-scroller">
+
+                <div class="project-holder">
+                    <div class="project">
+                        <img style="padding: 20px" src="{% static 'images/write.png' %}">
+                        <form id="createproject" action="{% url 'app:create' %}">
+                             <input type="hidden" />
+                        </form>
+                        <h3 style="margin-bottom: 20px;" onclick="javascript:{document.getElementById('createproject').submit()}">Create New</h3>
+                    </div>
+                </div>
+                {% for app in appList %}
+                <div class="project-holder">
+                    <div class="project">
+
+                        <img style="width:100px; height:100px; margin:10px;object-fit:contain" src="{{app.appIcon.url}}">
+
+                        <form id="viewproject{{app.id}}" action="{% url 'app:show' app.id %}">
+                             <input type="hidden" />
+                        </form>
+                        <h3 onclick="javascript:{document.getElementById('viewproject{{app.id}}').submit()}">{{app.appname}}</h3>
+                        <p>{{app.showInfo}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

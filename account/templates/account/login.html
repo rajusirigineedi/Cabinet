@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extracss %}
+  <link rel="stylesheet" href="{% static 'css/authcss.css' %}">
+  <title>Login</title>
+{% endblock %}
+
+{% block header %}
+  {%include 'components/header.html' %}
+{% endblock %}
+
+
+{% block body %}
+<div class="page page1">
+      <div class="page1-text">
+          <div class="mainHead">
+              <h2>CABINET.</h2>
+              <img class="mainIcon" src="{% static 'images/github.png'%}">
+              <img class="mainIcon" src="{% static 'images/appstore.png'%}">
+          </div>
+          <h4>Login ..</h4>
+          <p>Login to Your personal project showcase. We will help you to showcase your masterpiece without your effort in designing and time. </p>
+          {% if error %}
+          <div class="error-mask">
+                <p>{{error}}</p>
+          </div>
+          {% endif %}
+          <form method="POST" action="{% url 'account:login' %}">
+            {% csrf_token %}
+              <input type="text"  name="username" placeholder="email">
+              <input type="password"  name="password" placeholder="password">
+              <input type="submit" type="button" class="prevbutton" value="LOGIN">
+          </form>
+
+      </div>
+      </div>
+
+{% endblock %}

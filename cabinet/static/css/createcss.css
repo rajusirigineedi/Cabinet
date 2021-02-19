@@ -1,0 +1,117 @@
+
+form
+ .prevbutton {
+    background-color:#01b2e8;
+    color: white;
+    font-size: 80%;
+     width:100%;
+    font-weight: bold;
+    padding: 15px 18px;
+    border-radius: 10px;
+    border:none;
+     margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+form input[type="text"], form input[type="password"], form input[type="file"] {
+    background-color: whitesmoke;
+  border: 4px solid white;
+    border-radius: 10px;
+  color: #01b2e8;
+      font-weight:bold;
+  padding: 15px 80px;
+  text-decoration: none;
+  font-size: 80%;
+    width:100%;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+form input[type="file"] {
+    padding: 12px 80px;
+}
+
+.error-mask >p{
+    margin: 0px;
+    font-size: 80%;
+}
+.error-mask{
+    background-color: rgb(255, 0, 0, 0.4);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width:44%;
+}
+
+.page1 {
+    height: 100vh;
+
+}
+.page1-text{
+    padding: 0% 10%;
+    width:100%;
+}
+
+/*Media Queries*/
+
+/*laptops and desktops*/
+@media only screen and (min-width:1200px) {
+
+}
+
+/*potrait mode for tabs*/
+@media only screen and (max-width:1023px) {
+    .prevbutton{
+        width:70%;
+    }
+    input[type="text"], input[type="password"]{
+        width:70%;
+    }
+    .error-mask{
+        width: 70%;
+    }
+    .page1{
+        height: 150vh;
+    }
+}
+
+/*tabs*/
+@media only screen and (max-width:767px) {}
+
+/*normal phones*/
+@media only screen and (max-width:480px) {
+
+  .page1{
+      height: 180vh;
+  }
+    .page1 p{
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .mainHead{
+        font-size: 180%;
+    }
+
+    .page1-text{
+        width:80%;
+        padding:0px;
+    }
+
+    form .prevbutton{
+        width:100%;
+        margin-left:0px;
+    }
+    form input[type="text"], form input[type="password"], form input[type="file"]{
+        width:100%;
+        padding:8px 18px;
+        margin-left: 0px;
+
+    }
+    .error-mask{
+        width: 100%;
+        padding: 10px 10px;
+    }
+
+
+}
