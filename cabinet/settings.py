@@ -121,6 +121,6 @@ LOGIN_URL = '/login'
 
 
 try:
-    from .local_settings.py import *
+    from .local_settings import *
 except ImportError:
     print("You are on production")

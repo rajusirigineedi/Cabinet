@@ -52,3 +52,10 @@ def logout(request):
 
 def about(request):
     return render(request, 'account/about.html')
+
+
+def err404(request, exception):
+    return render(request, 'account/err.html')
+
+def err404disp(request):
+    return render(request, 'account/err.html')

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extracss %}
+  <link rel="stylesheet" href="{% static 'css/err.css' %}">
+  <title>Oops!</title>
+{% endblock %}
+
+{% block header %}
+  {%include 'components/header.html' %}
+{% endblock %}
+
+
+{% block body %}
+<div class="page page1" style="display: flex;flex-direction: column;background:rgba(0,0,0,0.9)">
+                <h1 class="err-det">OOPS! YOU ARE OUT OF YOUR CABINET</h1>
+        <img class="err-img" src="{% static 'images/urb.png' %}">
+        <h1 class="err-num" style="">404</h1>
+        <div class="gohome" onclick="javascript:{document.getElementById('gohome').submit()}">
+         Home
+        </div>
+        <form id="gohome" method="POST" action="{% url 'account:home' %}">
+            {% csrf_token %}
+            <input type="hidden" />
+        </form>
+      </div>
+{% endblock %}
